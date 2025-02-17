@@ -15,11 +15,16 @@ pip install -r requirements.txt
 
 openai (for interacting with OpenAI's API)
 
+google-genai (for interacting with Gemini API)
+
 python-dotenv (for managing API keys securely)
 
 ## Setup
 
 API Key Configuration
+
+https://ai.google.dev/gemini-api/docs/api-key (for gemini)
+https://platform.openai.com/docs/quickstart (for OpenAI)
 
 Create a .env file in the same directory as the script.
 
