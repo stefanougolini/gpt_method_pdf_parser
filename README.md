@@ -24,13 +24,15 @@ python-dotenv (for managing API keys securely)
 API Key Configuration
 
 https://ai.google.dev/gemini-api/docs/api-key (for gemini)
+
 https://platform.openai.com/docs/quickstart (for OpenAI)
 
 Create a .env file in the same directory as the script.
 
-Add your OpenAI API key:
+Add your OpenAI or Gemini API key:
 ````
 OPENAI_API_KEY=your_openai_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 ````
 ## Prompt Setup
 
