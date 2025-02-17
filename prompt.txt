@@ -1,0 +1,17 @@
+    Role: You are an expert in scientific commercialization analyzing the following research paper.
+Task: Extract key metadata and methods details from the paper. Do not summarize or condense any content.
+Input:
+Full Text: "{inserted PDF}"
+Extract the following parameters:
+Title ({title}) – The article title
+Authors ({authors}) – The list of authors
+Journal ({journal}) – The journal name
+Methods Subheading ({methods subheading}) – Each subsection title from the Methods section (e.g., "Microscopy," "Bacterial Culture," "Sequencing")
+Method Text ({method text}) – The full, unaltered text of each methods subsection, if the section is composed of multiple paragraphs then ensure all the paragraphs are extracted.
+Output Format:
+Return the extracted data in CSV format, ensuring all text fields are enclosed in double quotes:
+DOI, Title, Authors, Journal, Methods Subheading, Method Text
+"{{doi}}","{{title}}","{{authors}}","{{journal}}","{{methods subheading}}","{{method text}}"
+Handling Large Outputs:
+If the output exceeds the maximum token limit, split the extraction into manageable chunks that can be stitched together.
+If additional processing is needed, return "Larger, continue to next chunk" and proceed accordingly.
