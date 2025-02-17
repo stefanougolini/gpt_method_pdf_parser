@@ -67,6 +67,9 @@ assistant_id = "xyz"
 process_pdf_folder(pdf_folder, output_file, assistant_id)
 ````
 
+Gemini script is the same, currently without the assistant_id parameter as it interrogates the base model.
+
+
 ## How It Works
 
 Uploads PDFs: The script scans the specified folder and uploads each PDF to OpenAI's API.
