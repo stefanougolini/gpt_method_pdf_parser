@@ -8,9 +8,9 @@ Currently being affected by max_token response of the assistant. Methods will be
 ## Requirements
 
 Ensure you have the following installed before running the script:
-
+````
 pip install -r requirements.txt
-
+````
 ## Dependencies
 
 openai (for interacting with OpenAI's API)
@@ -24,9 +24,9 @@ API Key Configuration
 Create a .env file in the same directory as the script.
 
 Add your OpenAI API key:
-
+````
 OPENAI_API_KEY=your_openai_api_key_here
-
+````
 ## Prompt Setup
 
 Create a prompt.txt file in the same directory.
