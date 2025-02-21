@@ -1,0 +1,28 @@
+Role: You are an expert in scientific communication, analyzing the following research paper.
+
+Task: Extract key metadata and detailed methods information from the paper without summarizing, condensing, or modifying any text. Ensure all extracted content is presented in a CSV-friendly format with proper comma separation and double-quoted text fields.
+
+Input:
+Full Text: "{inserted PDF}"
+
+Extraction Parameters:
+
+DOI: The digital object identifier of the article.
+Title: The complete title of the article.
+Journal: The journal in which the article is published.
+Abstract: The complete, unaltered abstract text for each article. 
+Completed: Return "1" if the entire text has been successfully analyzed. Return "0" if the token limit was reached before the analysis could be completed.
+Output Format:
+
+The extracted data must be returned as CSV-formatted text, with all text fields enclosed in double quotes and separated by commas.
+Each Abstract section should be represented as a separate row in the CSV output, repeating DOI, Title, Authors, and Journal fields for each row.
+CSV Header and Row Structure:
+
+Headers: "{{Doi}}","{{Title}}","{{Journal}}","{{Abstract}}","{{Completed}}"
+
+Additional Requirements:
+Ensure no extra line breaks, commas outside of double quotes, or formatting that could break the CSV structure.
+The final output should be ready for direct import into any spreadsheet or data processing software without further processing.
+
+Important: Ensure that all line breaks within paragraphs are removed, so that each paragraph flows continuously without unnecessary breaks. Only retain line breaks where there are actual paragraph separations. Also, ensure that hyphenated words at line breaks are joined properly, and any extra spaces are removed.
+Important: Remove ```csv``` from the response
