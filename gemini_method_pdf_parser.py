@@ -21,7 +21,7 @@ def upload_pdf(pdf_path):
 
 def get_prompt():
     """Reads the prompt from prompt.txt."""
-    with open("prompt.txt", "r", encoding="utf-8") as f:
+    with open("abstract_prompt.txt", "r", encoding="utf-8") as f:
         return f.read().strip()
 
 def ask_methods_section(uploaded_file, pdf_filename, output_file):
@@ -32,10 +32,10 @@ def ask_methods_section(uploaded_file, pdf_filename, output_file):
         contents=[uploaded_file, prompt]
     )
     extracted_text = response.text
-    print(extracted_text)
+    #print(extracted_text)
 
     with open(output_file, "a", encoding="utf-8") as f:
-        f.write(f"\n---\n📄 **File:** {pdf_filename}\n")
+        #f.write(f"\n---\n📄 **File:** {pdf_filename}\n")
         f.write(extracted_text)
 
     return extracted_text
@@ -48,18 +48,19 @@ def process_pdf_folder(pdf_folder, output_file):
         return
 
     print(f"Found {len(pdf_files)} PDFs. Processing...")
-    for pdf_filename in pdf_files:
+    for pdf_filename in pdf_files[:5]:
         pdf_path = os.path.join(pdf_folder, pdf_filename)
         uploaded_file = upload_pdf(pdf_path)
         ask_methods_section(uploaded_file, pdf_filename, output_file)
 
     print(f"\n✅ Extraction complete! All methods saved in '{output_file}'.")
 
-if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python script.py <pdf_folder> <output_file>")
-        sys.exit(1)
 
-    pdf_folder = sys.argv[1]
-    output_file = sys.argv[2]
+if __name__ == "__main__":
+#    if len(sys.argv) < 3:
+#       print("Usage: python script.py <pdf_folder> <output_file>")
+#      sys.exit(1)
+
+    pdf_folder = r"C:\\Users\\charlton\\gpt_method_pdf_parser\\run\\"
+    output_file = r"C:\\Users\\charlton\\gpt_method_pdf_parser\\text\\abstract_extracted.txt"
     process_pdf_folder(pdf_folder, output_file)
