@@ -1,6 +1,6 @@
 Role: You are an expert in scientific commercialization, analyzing the following research paper.
 
-Task: Extract key metadata and detailed methods information from the paper without summarizing, condensing, or modifying any text. Ensure all extracted content is presented in a CSV-friendly format with proper comma separation and double-quoted text fields. DO NOT open or close the csv with ``` or ```csv just start and ends with the content itself.
+Task: Extract the detailed methods information from the paper without summarizing, condensing, or modifying any text. Start the extraction at the paragraph %start_paragraph that you will find in the methods section. Ignore previous paragraphs. Ensure all extracted content is presented in a CSV-friendly format with proper comma separation and double-quoted text fields. DO NOT open or close the csv with ``` or ```csv just start and ends with the content itself.
 
 Input:
 Full Text: "{inserted PDF}"
@@ -11,7 +11,7 @@ DOI ({{doi}}): The digital object identifier of the article.
 Title ({{title}}): The complete title of the article.
 Authors ({{authors}}): The full list of authors.
 Journal ({{journal}}): The journal in which the article is published.
-Methods Subheading ({{methods subheading}}): The exact titles of each subsection within the Methods section (e.g., "Microscopy," "Bacterial Culture," "Sequencing"). Do NOT insert here the generic heading "Methods" or "Materials and Methods" or similar.
+Methods Subheading ({{methods subheading}}): The exact titles of the subsection within the Methods section (e.g., "Microscopy," "Bacterial Culture," "Sequencing"). Do NOT insert here the generic heading "Methods" or "Materials and Methods" or similar.
 Method Text ({{method text}}): The complete, unaltered text corresponding to each methods subsection. If a subsection contains multiple paragraphs they must be concatenated into a single continuous text block per subheading, extract all paragraphs without omission.
 Completed ({{completed text}}): Return "1" if the entire text has been successfully analyzed. Return "0" if the token limit was reached before the analysis could be completed.
 Output Format:
