@@ -1,9 +1,18 @@
 Role: You are an expert in scientific commercialization, analyzing the following research paper.
 
-Task: Extract the detailed methods information from the paper without summarizing, condensing, or modifying any text. Start the extraction at the paragraph %start_paragraph that you will find in the methods section. Ignore previous paragraphs. Ensure all extracted content is presented in a CSV-friendly format with proper comma separation and double-quoted text fields. DO NOT open or close the csv with ``` or ```csv just start and ends with the content itself.
+Task:
+Extract key metadata and detailed methods information from the paper without summarizing, condensing, or modifying any text. Start the extraction at the paragraph %start_paragraph that you will find in the methods section. Ignore previous paragraphs. Ensure all extracted content is presented in a CSV-friendly format with proper comma separation and double-quoted text fields. In case of unavoidable CSV breakage (for example, stray line breaks) that would corrupt the CSV structure, you may minimally revise those characters (e.g. remove or replace newlines, DO NOT add a /n, but just add a space instead of a newline) but do not otherwise alter the text. If you encounter quotes or double quotes characters in you extraction DO NOT extract them, instead use * as a character. ONLY use quotes to contain the CSV values, never in the extracted text!
 
+Important:
+
+Do not summarize or remove words.
+If you must change characters to prevent the CSV from breaking, only do the minimal required change (for example, escaping a quote or replacing a newline with a space).
+Do not insert or remove any words that change meaning.
+Do not enclose your CSV in triple backticks. The final output must be CSV only.
+Each text field must be enclosed in double quotes. Commas must separate fields.
+No additional line breaks except the one at the end of each CSV row.
 Input:
-Full Text: "{inserted PDF}"
+Full Text: "{inserted PDF text}"
 
 Extraction Parameters:
 
@@ -11,18 +20,19 @@ DOI ({{doi}}): The digital object identifier of the article.
 Title ({{title}}): The complete title of the article.
 Authors ({{authors}}): The full list of authors.
 Journal ({{journal}}): The journal in which the article is published.
-Methods Subheading ({{methods subheading}}): The exact titles of the subsection within the Methods section (e.g., "Microscopy," "Bacterial Culture," "Sequencing"). Do NOT insert here the generic heading "Methods" or "Materials and Methods" or similar.
-Method Text ({{method text}}): The complete, unaltered text corresponding to each methods subsection. If a subsection contains multiple paragraphs they must be concatenated into a single continuous text block per subheading, extract all paragraphs without omission.
+Methods Subheading ({{methods subheading}}): The exact titles of each subsection within the Methods section (e.g., "Microscopy," "Bacterial Culture," "Sequencing"). Do not insert here the generic heading "Methods" or "Materials and Methods."
+Method Text ({{method text}}): The complete, unaltered text corresponding to each methods subsection. If a subsection contains multiple paragraphs, they must be concatenated into a single continuous text block per subheading; extract all paragraphs without omission.
 Completed ({{completed text}}): Return "1" if the entire text has been successfully analyzed. Return "0" if the token limit was reached before the analysis could be completed.
 Output Format:
-
 The extracted data must be returned as CSV-formatted text, with all text fields enclosed in double quotes and separated by commas.
+
 Each methods subheading from the Methods section should be represented as a separate row in the CSV output, repeating DOI, Title, Authors, and Journal fields for each row.
-CSV Header and Row Structure:
 
 Headers: "{{doi}}","{{title}}","{{authors}}","{{journal}}","{{methods subheading}}","{{method text}}","{{completed text}}"
 
 Additional Requirements:
 
-Ensure no extra line breaks, commas outside of double quotes, or formatting that could break the CSV structure.
-The final output should be ready for direct import into any spreadsheet or data processing software without further processing.
+If the text contains line breaks, quotes, or other characters that would break CSV formatting, you may minimally revise them by substituting quotes (with *) or replacing newlines with spaces (not \n), but do not otherwise change or remove text.
+Do not insert any extra lines or characters beyond what is needed to keep the CSV valid.
+Do not enclose your output in code fences (```).
+The final output should be ready for direct import into a spreadsheet or data processing software.

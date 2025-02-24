@@ -128,7 +128,7 @@ def process_pdf_folder(pdf_folder, output_file):
 
     print(f"Found {len(pdf_files)} PDFs. Processing...")
 
-    for pdf_filename in pdf_files[:5]:  # Limit processing to first 5 PDFs
+    for pdf_filename in pdf_files:  # Limit processing to first 5 PDFs
         pdf_path = os.path.join(pdf_folder, pdf_filename)
         uploaded_file = upload_pdf(pdf_path)
 
@@ -140,5 +140,5 @@ def process_pdf_folder(pdf_folder, output_file):
 
 if __name__ == "__main__":
     pdf_folder = r".\\run\\"  # Folder containing PDFs
-    output_file = r"methods_extracted_v7.txt"  # Output file for extracted data
+    output_file = r"methods_extracted_fullrun_csv_optimized_v2.txt"  # Output file for extracted data
     process_pdf_folder(pdf_folder, output_file)
